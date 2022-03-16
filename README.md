@@ -1,2 +1,2 @@
 # algorithm
-algorithm Practice
+알고리즘 문제 풀이 관련
