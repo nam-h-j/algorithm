@@ -18,8 +18,15 @@
 - brew install gcc
 
 1. ##bits/stdc++.h 라이브러리 include
+   - 아래 위치로 이동
+     - cd /usr/local/include
+   - bits 디렉터리 생성
+     - mkdir bits
+   - stdc++.h 파일명으로 vi 에디터 실행
+     - vi stdc++.h
+   - 아래의 내용 삽입
 
-₩₩₩
+```
 // C++ includes used for precompiling -_- C++ -_-
 
 // Copyright (C) 2003-2013 Free Software Foundation, Inc.
@@ -137,4 +144,15 @@
 #include <unordered_map>
 #include <unordered_set>
 #endif
-₩₩₩
+```
+
+### gcc로 C++ 파일 컴파일
+
+- g++ -std=c++14 -Wall hello.cpp -o hello.out
+  - g++ : gcc c++ 컴파일러
+  - -std=c++14 : c++ 버전
+  - -Wall : strict모드
+  - hello.cpp : 컴파일 하는 파일명
+  - -o hello.out: 아웃풋 파일명
+- ./hello.out
+  - 실행
