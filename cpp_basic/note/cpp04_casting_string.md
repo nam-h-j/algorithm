@@ -34,8 +34,10 @@ cout << (int)a - 'a' << "\n";
 #### 문자열(string)
 
 - 알아두면 유용한 문자열관련 함수
-  1. reverse
-  - 순서를 뒤집는다
+
+1. reverse
+
+- 순서를 뒤집는다
 
 ```c++
   reverse(str.begin(), str.end())
