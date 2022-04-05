@@ -1,158 +1,132 @@
 ## C++ 코딩 테스트를 위한 C++ 기초
 
-### C++로 코딩 테스트를 하면 좋은 점
-
-- 속도에 이점이 있음(런타임이 빠름)
-- STL(Standard Template Library)로 문제풀기 좋음
-- 고수준의 해설코드 자료가 압도적으로 많다, 알고리즘 공부에 좋음
-
-### C++ 설치(MAC)
-
-1. gcc 컴파일러 설치
-
-- gcc..란? GNU Compiler Colletion, 컴파일러 모음
-  - 1987년 GNU 프로젝트의 컴파일로로 작성, (리처드 스톨만)
-  - 1997년 공개, 1999년 릴리스
-  - 시스템 자체 컴파일러 보다 이식성이 좋음
-  - C(gcc), C++(g++), 오브젝티브C, 오브젝티브C++, 포트란(gfortran), 자바(gcj), 에이다(gnat), 고(gccgo) 등 지원
-- brew install gcc
-
-1. ##bits/stdc++.h 라이브러리 include
-   - 아래 위치로 이동
-     - cd /usr/local/include
-   - bits 디렉터리 생성
-     - mkdir bits
-   - stdc++.h 파일명으로 vi 에디터 실행
-     - vi stdc++.h
-   - 아래의 내용 삽입
+### C++ 코드 구성
 
 ```
-// C++ includes used for precompiling -_- C++ -_-
-
-// Copyright (C) 2003-2013 Free Software Foundation, Inc.
-//
-// This file is part of the GNU ISO C++ Library. This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
-
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-
-// Under Section 7 of GPL version 3, you are granted additional
-// permissions described in the GCC Runtime Library Exception, version
-// 3.1, as published by the Free Software Foundation.
-
-// You should have received a copy of the GNU General Public License and
-// a copy of the GCC Runtime Library Exception along with this program;
-// see the files COPYING3 and COPYING.RUNTIME respectively. If not, see
-// <http://www.gnu.org/licenses/>.
-
-/\*\* @file stdc++.h
-
-- This is an implementation file for a precompiled header.
-  \*/
-
-// 17.4.1.2 Headers
-
-// C
-#ifndef \_GLIBCXX_NO_ASSERT
-#include <cassert>
-#endif
-#include <cctype>
-#include <cerrno>
-#include <cfloat>
-#include <ciso646>
-#include <climits>
-#include <clocale>
-#include <cmath>
-#include <csetjmp>
-#include <csignal>
-#include <cstdarg>
-#include <cstddef>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <ctime>
-
-#if \_\_cplusplus >= 201103L
-#include <ccomplex>
-#include <cfenv>
-#include <cinttypes>
-#include <cstdbool>
-#include <cstdint>
-#include <ctgmath>
-#include <cwchar>
-#include <cwctype>
-#endif
-
-// C++
-#include <algorithm>
-#include <bitset>
-#include <complex>
-#include <deque>
-#include <exception>
-#include <fstream>
-#include <functional>
-#include <iomanip>
-#include <ios>
-#include <iosfwd>
-#include <iostream>
-#include <istream>
-#include <iterator>
-#include <limits>
-#include <list>
-#include <locale>
-#include <map>
-#include <memory>
-#include <new>
-#include <numeric>
-#include <ostream>
-#include <queue>
-#include <set>
-#include <sstream>
-#include <stack>
-#include <stdexcept>
-#include <streambuf>
-#include <string>
-#include <typeinfo>
-#include <utility>
-#include <valarray>
-#include <vector>
-
-#if \_\_cplusplus >= 201103L
-#include <array>
-#include <atomic>
-#include <chrono>
-#include <condition_variable>
-#include <forward_list>
-#include <future>
-#include <initializer_list>
-#include <mutex>
-#include <random>
-#include <ratio>
-#include <regex>
-#include <scoped_allocator>
-#include <system_error>
-#include <thread>
-#include <tuple>
-#include <typeindex>
-#include <type_traits>
-#include <unordered_map>
-#include <unordered_set>
-#endif
+#include <bits/stdc++.h> // --- 1
+using namespace std;// --- 2
+string text;// --- 3
+int main(){
+cin >> text;// --- 4
+cout << text;// --- 5
+return 0; // - 6
+}
 ```
 
-### gcc로 C++ 파일 컴파일
+1. 헤더파일, STL라이브러리 import
 
-- g++ -std=c++14 -Wall hello.cpp -o hello.out
-  - g++ : gcc c++ 컴파일러
-  - -std=c++14 : c++ 버전
-  - -Wall : strict모드
-  - hello.cpp : 컴파일 하는 파일명
-  - -o hello.out: 아웃풋 파일명
-- ./hello.out
-  - 실행
+- bits/stdc++.h는 모든 표준 라이브러리가 포함된 헤더
+
+2. 네임스페이스
+3. 변수선언
+4. 입력 : cin, scanf
+5. 출력 : cout, printf
+6. 프로세스 종료
+
+### C++ 타입
+
+```
+void, char, string, bool, int, long long, double, unsigned long long
+```
+
+1. void : 리턴값이 없음
+
+```
+#include <bits/stdc++.h>
+using namespace std;
+int num = 1;
+void func_a(){
+  num = 7;
+  cout << num << "\n";
+  return;
+}
+int main(){
+  func_a();
+  return 0;
+}
+```
+
+- 함수 리턴 값 없으면 void로 선언
+- 함수를 선언할때는 호출되는 상단에 해야함.
+- 형과 인자만 선언해서 하단에서 모듈화 할 수도 있음.(코테에선 굳이 할 필요 없음)
+
+2. char
+
+- 1byte
+- ''으로 할당 ex) char a = 'a';
+
+3. string
+
+- ""안에 할당
+
+* 아스키코드
+  - 1964년 미국 ANSI에서 표준화한 정보교환용 7비트 부호체계
+  - 000(0x00)부터 127(0x7F)까지 총 128개의 부호가 사용
+  - 1바이트를 구성하는 8비트 중에서 7비트를 사용, 나머지 1비트는 통신 에러 검출을 위한 용도(패리티 비트).
+  - 문자열에서 + 하는 연산은 “아스키코드”를 기반
+  - A = 089
+  - a = 121
+
+4. bool
+
+- boolean, 1byte
+
+5. int
+
+- 4byte 정수
+- 약 +-21억까지 (-2,147,483,648 ~ 2,147,483,647)
+
+6. long long
+
+- 8byte 정수
+- 약 +-922경까지 (–9,223,372,036,854,775,808 ~ 9,223,372,036,854,775,807)
+
+7. float, double
+
+- 실수형
+- float 보다 double이 정확도가 높기 때문에 double을 사용한다.
+
+8. unsigned long long
+
+- 8바이트 양수
+- 약 1844경까지 (0 ~ 18,446,744,073,709,551,615)
+
+### C++ 형식지정자
+
+```
+scanf("%d.%d", num1, num2);
+```
+
+- 입출력 할때 형식지정자를 사용하는 것이 안정성이 높다.
+- 실수형 연산은 되도록 정수형 연산으로 변경하는 것이 좋다.
+  - %d(digit) : int
+  - %c(character) : char
+  - %s(string) : string
+  - %lf(long float) : double
+  - %ld(long double): long long
+
+### C++ 입력처리
+
+- cout문법
+
+  1. cout << "출력할 대상" << "출력할 대상2"
+  2. cout로 출력할때는 형태를 지정하지 않고 바로 값만 작성해도 된다.
+
+- cin문법
+
+1. 숫자를 한자리씩 끊어서 입력 받기
+
+- cin을 사용하면 스페이스, 개행까지 함께 받기 때문에 string으로 변환해서 입력 받는다.
+
+```c++
+cin >> n >> m;
+for(int i = 0; i < n; i++){
+cin >> s;
+}
+```
+
+- scanf를 사용할때 아래 코드와 같이 형식지정자("%1d")를 사용하면 string으로 변환하지 않아도 한자리씩 끊어서 받을 수 있다.
+
+```c++
+scanf("%1d", &a[i][j]);
+```
