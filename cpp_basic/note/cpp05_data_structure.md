@@ -76,14 +76,14 @@ int main(){
 
 ```c++
 //커스텀 오퍼레이터 사용
-int a[5];
+#include <bits/stdc++.h>
+using namespace std;
+bool compair(int a, int b){
+    return a > b;
+}
 int main(){
-  //ASC(오름차순)
-  sort(a, a + 5);
-  sort(a, a + 5, less<int>());
-
-  //DESC(내림차순)
-  sort(a, a + 5, greater<int>());
-  return 0;
+    int arr[10] = {0,1,9,2,8,3,7,4,6,5};
+    sort(arr, arr+11, compair);
+    return 0;
 }
 ```
