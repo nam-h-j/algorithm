@@ -1,10 +1,22 @@
-## C++ 코딩 테스트를 위한 C++ 기초
+# C++ 코딩 테스트를 위한 C++ 기초
 
-### C++ 자료구조
+## C++ 자료구조
 
-#### 형변환(casting)
+### 형변환(casting)
 
-1. pair, tuple
+- [1. Pair, Tuple](#1-pair-tuple)
+- [2. Vector](#2-vector)
+- [3. Array](#3-array)
+- [4. 2차원 배열](#4-2차원-배열)
+- [5. Map](#5-map)
+- [6. Set](#6-set)
+- [7. Multiset](#7-multiset)
+- [8. Stack](#8-stack)
+- [9. Queue](#9-queue)
+- [10. Deque](#10-deque)
+- [11. Struct](#11-struct구조체)
+
+#### 1. Pair, Tuple
 
 - pair : 두개의 값을 담을 때
 - tuple : 세가지 이상의 값을 담을 때
@@ -88,7 +100,7 @@ int main(){
 }
 ```
 
-2. vector
+#### 2. Vector
 
 - 동적 요소 할당
 - 연속된 메모리 공간, 힙 메모리에 할당
@@ -145,7 +157,7 @@ int main(){
 }
 ```
 
-3. Array
+#### 3. Array
 
 - 정적배열
 - 연속된 메모리 공간, 스택에 할당
@@ -194,11 +206,196 @@ int main(){
 }
 ```
 
-4. 2차원 배열
-5. map
-6. set
-7. multiset
-8. stack
-9. queue
-10. deque
-11. struct(구조체)
+#### 4. 2차원 배열
+
+- 기존 배열에서 차원을 하나 늘린다.
+- 첫번째 차원에서 탐색하고 2번째 차원순으로 탐색하는 것이 좋다.
+- C++에서 캐시를 첫번째 차원을 기준으로 하기 때문에 캐시 효율을 위해서 순서대로 탐색하는 것이 유리하다.
+
+```c++
+using namespace std;
+const int mxy = 3;
+const int mxx = 4;
+int a[mxy][mxx];
+int main(){
+  for(int i = 0; i < mxy; i++){
+    for(int j = 0; j < mxx; j++){
+      a[i][j] = (i + j);
+    }
+  }
+  //good
+  for(int i = 0; i < mxy; i++){
+    for(int j = 0; j < mxx; j++){
+      cout << a[i][j] << ' ';
+    }
+    cout << '\n';
+  }
+  //bad
+  for(int i = 0; i < mxx; i++){
+    for(int j = 0; j < mxy; j++){
+      cout << a[j][i] << ' ';
+    }
+    cout << '\n';
+  }
+  return 0;
+}
+```
+
+#### 5. Map
+
+- Key, Value 형태의 자료구조
+- 레드-블랙트리 구조
+- 정렬된 위치에 삽입
+- "map<string, int>"로 선언
+- clear, size, erase 사용가능
+- map과 unordered_map 두종류가 있다.
+  - map
+    - 정렬 됨
+    - 레드블랙트리 기반
+    - 탐색, 삽입, 삭제에 O(logN)이 걸림
+  - unordered_map
+    - 정렬 안됨
+    - 해시테이블 기반
+    - 탐색, 삽입, 삭제에 O(1), 최악의 경우 O(N)이 걸림
+  - 되도록이면 map을 사용하는 것이 좋다. unordered_map의 경우 O(N)이 걸릴 수가 있기 때문에 시간 초과가 날 수가 있음.
+
+```c++
+//map.cpp
+#include <bits/stdc++.h>
+using namespace std;
+int v[10];
+int main(){
+    //선언
+    map<string, int> _map;
+    unordered_map<string, int> umap;
+
+    //할당1
+    _map.insert({"test1", 1});
+    umap.insert({"test1", 11});
+    //할당2
+    _map.emplace("test2", 2);
+    umap.emplace("test2", 22);
+    //할당3 및 수정
+    _map["test3"] = 3;
+    _map["test2"] = 2*2;
+    umap["test3"] = 33;
+    umap["test2"] = 22*2;
+
+    //출력 : first = key, second = val
+    cout << "print '_map' : " << "\n";
+    for(auto elem : _map){
+        cout << elem.first << " :: " << elem.second << '\n';
+    }
+    cout << "\n";
+
+    //출력
+    cout << "print 'umap' : " << "\n";
+    for(auto elem : umap){
+        cout << elem.first << " :: " << elem.second << '\n';
+    }
+    cout << "\n";
+
+    //find
+    //find는 찾지 못하면 end()이터레이터를 반환
+    cout << "umap.find('test4') : " << "\n";
+    auto search = umap.find("test4");
+    if(search != umap.end()){
+        cout << "found :" << search -> first << " " << (*search).second << '\n';
+    }else{
+        cout << "not found.." << '\n';
+    }
+    cout << "\n";
+
+    //int형의 증감연산
+    cout << "umap['test1']++ : " << "\n";
+    umap["test1"]++;
+    cout << umap["test1"] << "\n";
+    cout << "\n";
+
+    //size
+    cout << "umap.size()" << "\n";
+    cout <<umap.size() <<"\n";
+    cout << "\n";
+
+    //erase
+    cout << "umap.erase('test1');" << "\n";
+    umap.erase("test1");
+    for(auto elem : umap){
+        cout << elem.first << " :: " << elem.second << '\n';
+    }
+    cout << "\n";
+return 0;
+}
+```
+
+#### 6. set
+
+- 중복 값 허용 안함
+- 나머지는 map과 유사함
+
+```c++
+//set.cpp
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    set<pair<string,int>> _set;
+    //할당
+    cout << "할당" << "\n";
+    _set.insert({"test1",1});
+    _set.insert({"test2",2});
+    _set.insert({"test3",3});
+    for(pair<string, int> elem : _set) cout << elem.first << " : " << elem.second << "\n";
+    cout << "\n";
+
+    //중복값 넣기
+    cout << "중복값 넣기" << "\n";
+    _set.insert({"test2",2});
+    for(pair<string, int> elem : _set) cout << elem.first << " : " << elem.second << "\n";
+    cout << "\n";
+}
+```
+
+#### 7. multiset
+
+- 중복된 원소도 넣을 수 있는 자료 구조
+- 값만 넣으면 자동적으로 정렬되는 편리한 자료구조
+- erase, find, insert가 가능.
+
+```c++
+//multiset.cpp
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    multiset<pair<string,int>> _ms;
+    //할당, 무작위로 넣어도 정렬이 됨
+    cout << "할당" << "\n";
+    _ms.insert({"test5",5});
+    _ms.insert({"test2",2});
+    _ms.insert({"test4",4});
+    _ms.insert({"test1",1});
+    _ms.insert({"test3",3});
+    for(pair<string, int> elem : _ms) cout << elem.first << " : " << elem.second << "\n";
+    cout << "\n";
+
+    //find, erase
+    cout << "find, erase" << "\n";
+    auto test1 = _ms.find({"test1", 1});
+    _ms.erase(test1);
+    for(pair<string, int> elem : _ms) cout << elem.first << " : " << elem.second << "\n";
+    cout << "\n";
+}
+```
+
+#### 8. stack
+
+- LIFO(Last in First Out)
+- 문자열 폭발, 아름다운 괄호만들기, 짝찾기 등에 쓰면 됨
+- 교차하지 않고 라는 문장이 문제에 나오면 고려해볼 만한 자료구조
+
+#### 9. queue
+
+-
+
+#### 10. deque
+
+#### 11. struct(구조체)
