@@ -328,7 +328,7 @@ return 0;
 }
 ```
 
-#### 6. set
+#### 6. Set
 
 - 중복 값 허용 안함
 - 나머지는 map과 유사함
@@ -355,7 +355,7 @@ int main(){
 }
 ```
 
-#### 7. multiset
+#### 7. Multiset
 
 - 중복된 원소도 넣을 수 있는 자료 구조
 - 값만 넣으면 자동적으로 정렬되는 편리한 자료구조
@@ -386,16 +386,21 @@ int main(){
 }
 ```
 
-#### 8. stack
+#### 8. Stack
 
 - LIFO(Last in First Out)
 - 문자열 폭발, 아름다운 괄호만들기, 짝찾기 등에 쓰면 됨
 - 교차하지 않고 라는 문장이 문제에 나오면 고려해볼 만한 자료구조
 
-#### 9. queue
+#### 9. Queue
 
--
+- FIFO(First In First Out)
+- BFS에서 주로 사용함
 
-#### 10. deque
+#### 10. Deque
 
-#### 11. struct(구조체)
+- queue 는 앞에서만 꺼낼수 있지만 deque는 앞뒤로 참조가 가능하다.
+
+#### 11. Struct(구조체)
+
+#### 12. Priority Queue
