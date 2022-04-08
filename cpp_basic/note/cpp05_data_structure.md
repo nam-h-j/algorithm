@@ -392,6 +392,26 @@ int main(){
 - 문자열 폭발, 아름다운 괄호만들기, 짝찾기 등에 쓰면 됨
 - 교차하지 않고 라는 문장이 문제에 나오면 고려해볼 만한 자료구조
 
+```c++
+#include <bits/stdc++.h>
+using namespace std;
+stack<string> stk;
+int main(){
+    cout << "push stack to 'STACK'" << "\n";
+    stk.push("S");
+    stk.push("T");
+    stk.push("A");
+    stk.push("C");
+    stk.push("K");
+    int strLen = stk.size();
+    for (int i = 1; i <= strLen; i++){
+        cout << stk.top() <<"";
+        stk.pop();
+    }
+    cout<<"\n";
+}
+```
+
 #### 9. Queue
 
 - FIFO(First In First Out)
