@@ -417,6 +417,26 @@ int main(){
 - FIFO(First In First Out)
 - BFS에서 주로 사용함
 
+```c++
+#include <bits/stdc++.h>
+using namespace std;
+queue<string> q;
+int main(){
+    cout << "push queue to 'QUEUE'" << "\n";
+    q.push("Q");
+    q.push("U");
+    q.push("E");
+    q.push("U");
+    q.push("E");
+    int strLen = q.size();
+    for (int i = 1; i <= strLen; i++){
+        cout << q.front() <<"";
+        q.pop();
+    }
+    cout<<"\n";
+}
+```
+
 #### 10. Deque
 
 - queue 는 앞에서만 꺼낼수 있지만 deque는 앞뒤로 참조가 가능하다.
