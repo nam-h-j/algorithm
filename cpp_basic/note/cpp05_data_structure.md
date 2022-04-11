@@ -507,6 +507,9 @@ int main(){
 #### 11. Struct(구조체)
 
 - C++에서는 구조체 생성에 class와 struct를 쓰는데, 코딩테스트에서는 구조체를 자주 사용한다.
+
+---
+
 - 구조체 생성자
   - 구조체 생성자를 따로 선언하지 않을 경우 구조체 생성을 위한 임시변수선언 -> 자료구조에 맞게 값 할당 의 과정을 거치는 번거로움이 필요하다.
   - 구조체 생성자를 사용하면 위의 과정 없이 생성이 가능해진다.
@@ -612,6 +615,8 @@ int main()
 
 ```
 
+- 연산자 오버로딩(Operator Overloading)
+
 - C++에서 커스텀한 무언가를 진행하고 싶다면 구조체를 통해서 하면 된다.
 - 커스텀한 정렬이 필요하면 구조체를 사용하는것이 좋다.
 - 커스텀한 정렬의 예 : x를 1순위로 오름차순, y을 2순위로 내림차순 등
@@ -630,3 +635,30 @@ struct Point{
 ```
 
 #### 12. Priority Queue
+
+- 우선순위 큐.
+- 내부 구조는 heap으로 구현
+- 다익스트라, 그리디에 사용
+- greater로 오름차순, less로 내림차순으로 변경
+
+```c++
+#include <bits/stdc++.h>
+using namespace std;
+priority_queue<int, vector<int>, greater<int> > pq; //오름차순 ASC
+//priority_queue<int, vector<int>, less<int> > pq; // 내림차순 DESC
+int main(){
+    pq.push(5);
+    pq.push(4);
+    pq.push(3);
+    pq.push(2);
+    pq.push(1);
+    cout << pq.top() << "\n";
+    int pq_len = pq.size();
+    for(int i = 0 ; i < pq_len; i++){
+        cout << pq.top() << "\n";
+        pq.pop();
+    }
+    return 0;
+}
+
+```
